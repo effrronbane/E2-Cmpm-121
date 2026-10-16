@@ -7,11 +7,7 @@ const readout = document.querySelector<HTMLParagraphElement>(
 )!;
 let start = 2;
 
-function move() {
-  const rate = start * 3;
-  const mult = 6;
-  const fin = rate - mult;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+function shift() {
   for (let i = 0; i < 6; i++) {
     ctx.fillStyle = i < start ? "#27766b" : "#c9d2c9";
     ctx.fillRect(18 + i * 45, 16, 36, 36);
@@ -19,6 +15,14 @@ function move() {
     ctx.font = "16px system-ui";
     ctx.fillText(String(i + 1), 31 + i * 45, 40);
   }
+}
+
+function move() {
+  const rate = start * 3;
+  const mult = 6;
+  const fin = rate - mult;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  shift();
   ctx.fillStyle = "#233e43";
   ctx.font = "14px system-ui";
   ctx.fillText(`Producers: ${start} / 6`, 18, 76);
