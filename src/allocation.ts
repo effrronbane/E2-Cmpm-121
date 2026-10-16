@@ -12,17 +12,16 @@ function shift() {
     ctx.fillStyle = i < start ? "#27766b" : "#c9d2c9";
     ctx.fillRect(18 + i * 45, 16, 36, 36);
     ctx.fillStyle = i < start ? "#ffffff" : "#233e43";
-    ctx.font = "16px system-ui";
     ctx.fillText(String(i + 1), 31 + i * 45, 40);
   }
 }
 
-function move() {
+function draw() {
   const rate = start * 3;
   const mult = 6;
   const fin = rate - mult;
+  ctx.font = "16px system-ui";
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  shift();
   ctx.fillStyle = "#233e43";
   ctx.font = "14px system-ui";
   ctx.fillText(`Producers: ${start} / 6`, 18, 76);
@@ -37,6 +36,11 @@ function move() {
     `Assigned: ${start}/6 · Production: ${rate} · Consumption: ${mult} · Balance: ${
       fin > 0 ? "+" : ""
     }${fin}`;
+}
+
+function move() {
+  shift();
+  draw();
 }
 
 document.querySelector<HTMLButtonElement>("#allocation-less")!.onclick = () => {
